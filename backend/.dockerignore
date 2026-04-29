@@ -1,5 +1,40 @@
-fly.toml
-.git/
+# Python
 __pycache__/
-.envrc
-.venv/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Alembic
+alembic.ini
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
