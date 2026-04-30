@@ -7,5 +7,5 @@ sys.path.insert(0, str(backend_path))
 
 from app.main import app
 
-# Vercel expects 'app' variable
-__all__ = ["app"]
+# Vercel serverless handler
+app = app
