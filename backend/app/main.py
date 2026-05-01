@@ -1,17 +1,29 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth, decks, cards, study, stats, quiz
+import re
 
 app = FastAPI(title="Anki Web API", version="1.0.0")
 
-# CORS middleware
+# CORS middleware with Vercel pattern matching
+origins = [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://anki-web-version.vercel.app",
+]
+
+class VercelCORSMiddleware(CORSMiddleware):
+    def is_allowed_origin(self, origin: str) -> bool:
+        if origin in self.allow_origins:
+            return True
+        # Allow all Vercel preview deployments
+        if re.match(r"https://anki-web-version-.*\.vercel\.app", origin):
+            return True
+        return False
+
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "https://anki-web-version.vercel.app",
-    ],
+    VercelCORSMiddleware,
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
