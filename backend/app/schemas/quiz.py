@@ -9,12 +9,14 @@ class QuizCardCreate(BaseModel):
     source_deck_id: Optional[int] = None
     is_multiple: bool = False
     generate_wrong_with_ai: bool = False
+    explanation: Optional[str] = None
 
 class QuizCardUpdate(BaseModel):
     question: Optional[str] = None
     correct_answers: Optional[List[str]] = None
     wrong_answers: Optional[List[str]] = None
     is_multiple: Optional[bool] = None
+    explanation: Optional[str] = None
 
 class QuizCardResponse(BaseModel):
     id: int
@@ -24,6 +26,7 @@ class QuizCardResponse(BaseModel):
     correct_answers: List[str]
     wrong_answers: List[str]
     is_multiple: bool
+    explanation: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 

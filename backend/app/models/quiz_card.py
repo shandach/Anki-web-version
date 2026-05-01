@@ -12,5 +12,6 @@ class QuizCard(Base):
     correct_answers = Column(JSON, nullable=False)  # ["answer1", "answer2"]
     wrong_answers = Column(JSON, nullable=False)    # ["wrong1", "wrong2", "wrong3"]
     is_multiple = Column(Boolean, default=False)    # Можно ли выбрать несколько ответов
+    explanation = Column(Text, nullable=True)       # Объяснение правильного ответа
     created_at = Column(DateTime, default=func.current_timestamp())
     updated_at = Column(DateTime, default=func.current_timestamp(), onupdate=func.current_timestamp())

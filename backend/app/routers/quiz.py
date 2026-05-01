@@ -82,7 +82,8 @@ async def create_quiz_card(
         question=card_data.question,
         correct_answers=card_data.correct_answers,
         wrong_answers=wrong_answers[:3],  # Берем только 3
-        is_multiple=card_data.is_multiple
+        is_multiple=card_data.is_multiple,
+        explanation=card_data.explanation
     )
 
     db.add(new_card)
@@ -144,7 +145,8 @@ async def bulk_generate_quiz_cards(
             question=card_data["question"],
             correct_answers=[card_data["correct_answer"]],
             wrong_answers=card_data["wrong_answers"][:3],
-            is_multiple=False
+            is_multiple=False,
+            explanation=card_data.get("explanation")
         )
         db.add(new_card)
         created_cards.append(new_card)
@@ -339,7 +341,7 @@ def review_quiz_card(
         correct=is_correct,
         correct_answers=card.correct_answers,
         selected_answers=answer_data.selected_answers,
-        explanation=None
+        explanation=card.explanation
     )
 
 @router.delete("/cards/{card_id}", status_code=status.HTTP_204_NO_CONTENT)
