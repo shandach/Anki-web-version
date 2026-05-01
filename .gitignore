@@ -9,9 +9,10 @@ __pycache__/
 dist/
 build/
 
-# Environment
+# Environment - ALL env files with secrets
 .env
-.env.local
+.env.*
+!.env.example
 
 # IDEs
 .vscode/
